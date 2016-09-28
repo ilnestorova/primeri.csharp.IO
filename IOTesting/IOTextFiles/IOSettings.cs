@@ -17,7 +17,8 @@ namespace IOTextFiles
         {
             //Combine sabira  verniq pat s pravilniq sintaksis taka 4e ta raboti s all OS
             string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                                 "test.txt");
+                                                 "test.txt");// test.txt e imeto na faila v c:\AulaNew\primeri.csharp.IO
+            /*
             //Drugi vidove directorii
             string user = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             Console.WriteLine(user);
@@ -27,7 +28,7 @@ namespace IOTextFiles
             Console.WriteLine(desktop);
             string startmenu = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
             Console.WriteLine(startmenu);
-
+            */
             return path;
         }
         // zasdavame bool method za da moje da proverim dali ima zapis
@@ -52,12 +53,20 @@ namespace IOTextFiles
         {
             try
             {
-                string temp = System.IO.File.ReadAllText(GethPath());
-                //split use only char! zatova mahame \r
-                string[] table = temp.Replace("\r", "").Split('\n');
-                for(int i=0; i<table.Length; i++)
+                string temp = "", filePath = GethPath();
+                if (System.IO.File.Exists(filePath)) //proverka dali path e validen
                 {
-                    nstable.stable[i] = table[i];
+                    System.IO.File.ReadAllText(filePath);
+                    //split use only char! zatova mahame \r
+                    string[] table = temp.Replace("\r", "").Split('\n');
+                    for (int i = 0; i < table.Length; i++)
+                    {
+                        nstable.stable[i] = table[i];
+                    }
+                }
+                else {
+                    Console.WriteLine("the path is NOT exists");
+                    return false;
                 }
                 return true;
             }catch { }
