@@ -15,11 +15,24 @@ namespace IOTextFiles
         }
         public string GethPath()
         {
-            string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.txt");
+            //Combine sabira  verniq pat s pravilniq sintaksis taka 4e ta raboti s all OS
+            string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                                                 "test.txt");
+            //Drugi vidove directorii
+            string user = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            Console.WriteLine(user);
+            string luser = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            Console.WriteLine(luser);
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            Console.WriteLine(desktop);
+            string startmenu = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
+            Console.WriteLine(startmenu);
+
             return path;
         }
         // zasdavame bool method za da moje da proverim dali ima zapis
         // if use only System.IO.File.WriteAllText - nqma da znaem dali naistina e zapisan
+        // save!=write
         public bool save()
         {
             try
@@ -34,11 +47,13 @@ namespace IOTextFiles
             }catch { }
             return false;
         }
+        //open!=read
         public bool open()
         {
             try
             {
                 string temp = System.IO.File.ReadAllText(GethPath());
+                //split use only char! zatova mahame \r
                 string[] table = temp.Replace("\r", "").Split('\n');
                 for(int i=0; i<table.Length; i++)
                 {
