@@ -15,9 +15,12 @@ namespace IOTextFiles
         }
         public string GethPath()
         {
-            //Combine sabira  verniq pat s pravilniq sintaksis taka 4e ta raboti s all OS
+            //Combine sabira  verniq pat s pravilniq sintaksis taka 4e 
+            //ta raboti s all OS
+            // iskame da e taka Program\Settings\settings.txt
             string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                                 "test.txt");// test.txt e imeto na faila v c:\AulaNew\primeri.csharp.IO
+                                            /*"test.txt"*/ "Settings");// test.txt  e imeto na faila v c:\AulaNew\primeri.csharp.IO
+            path = System.IO.Path.Combine(path, "settings.txt");
             /*
             //Drugi vidove directorii
             string user = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
@@ -53,6 +56,7 @@ namespace IOTextFiles
         {
             try
             {
+                iniSettings();
                 string temp = "", filePath = GethPath();
                 if (System.IO.File.Exists(filePath)) //proverka dali path e validen
                 {
@@ -65,12 +69,33 @@ namespace IOTextFiles
                     }
                 }
                 else {
-                    Console.WriteLine("the path is NOT exists");
+                   // Console.WriteLine("the path is NOT exists"); iniSettings();
                     return false;
                 }
                 return true;
             }catch { }
             return false;
+        }
+        private void iniSettings()
+        {
+            try
+            {
+                bool fileExist = System.IO.File.Exists(GethPath());
+                if(!fileExist)
+                {
+                    string directory = System.IO.Path.GetDirectoryName(GethPath());
+                    //zastrahovame se 4e the  directory exists
+                    if(!System.IO.Directory.Exists(directory))
+                    {
+                        System.IO.Directory.CreateDirectory(directory);
+                    }
+                    //zapametiavame sadarjanieto na faila 
+                    //na praktika pravim restore settings-vrashtame parvona4alnoto sadatjanie na tablicata
+                    save();
+                }
+            }
+            catch { }
+
         }
     }
 }
