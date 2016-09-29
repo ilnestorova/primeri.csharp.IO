@@ -72,10 +72,14 @@ namespace IOTextFiles
                    // Console.WriteLine("the path is NOT exists"); iniSettings();
                     return false;
                 }
+                //startirane na faila
+                System.Diagnostics.Process.Start(filePath);
                 return true;
             }catch { }
             return false;
         }
+        //sazdavame 1dir i si garantirame 4e 6te imame nastroiki, koito da pro4etem
+        //nezavisimo dali te sa iztriti ili ne
         private void iniSettings()
         {
             try
@@ -92,6 +96,7 @@ namespace IOTextFiles
                     //zapametiavame sadarjanieto na faila 
                     //na praktika pravim restore settings-vrashtame parvona4alnoto sadatjanie na tablicata
                     save();
+                    //hubavo e settings da e v APPData\Program\Settings d ke udjf jwu l samata programa
                 }
             }
             catch { }
