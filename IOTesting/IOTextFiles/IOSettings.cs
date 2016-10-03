@@ -16,7 +16,7 @@ namespace IOTextFiles
         public string GethPath()
         {
             //Combine sabira  verniq pat s pravilniq sintaksis taka 4e 
-            //ta raboti s all OS
+            //da raboti s all OS
             // iskame da e taka Program\Settings\settings.txt
             string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                                             /*"test.txt"*/ "Settings");// test.txt  e imeto na faila v c:\AulaNew\primeri.csharp.IO
@@ -42,13 +42,14 @@ namespace IOTextFiles
             try
             {
                 string temp = "";
-                temp = String.Join("\r\n", nstable.stable);
+                temp = String.Join("\r\n", nstable.stable); //"\r\n" za nov red ako \n ne raboti
                 //zapis na textov file 
                 //toi se namira v temp
-               // System.IO.File.WriteAllText("c:\\AulaNew\\test.txt", temp);
+                // System.IO.File.WriteAllText("c:\\AulaNew\\test.txt", temp);
                 System.IO.File.WriteAllText(GethPath(), temp);
                 return true;
-            }catch { }
+            }
+            catch { }
             return false;
         }
         //open!=read
@@ -68,14 +69,16 @@ namespace IOTextFiles
                         nstable.stable[i] = table[i];
                     }
                 }
-                else {
-                   // Console.WriteLine("the path is NOT exists"); iniSettings();
+                else
+                {
+                    // Console.WriteLine("the path is NOT exists"); iniSettings();
                     return false;
                 }
                 //startirane na faila
                 System.Diagnostics.Process.Start(filePath);
                 return true;
-            }catch { }
+            }
+            catch { }
             return false;
         }
         //sazdavame 1dir i si garantirame 4e 6te imame nastroiki, koito da pro4etem
@@ -85,11 +88,11 @@ namespace IOTextFiles
             try
             {
                 bool fileExist = System.IO.File.Exists(GethPath());
-                if(!fileExist)
+                if (!fileExist)
                 {
                     string directory = System.IO.Path.GetDirectoryName(GethPath());
                     //zastrahovame se 4e the  directory exists
-                    if(!System.IO.Directory.Exists(directory))
+                    if (!System.IO.Directory.Exists(directory))
                     {
                         System.IO.Directory.CreateDirectory(directory);
                     }
@@ -106,9 +109,7 @@ namespace IOTextFiles
 }
 /*
 string file = //четеш го от някаде
-
 string[] row = file.Split ('\n');
-
 for (int i = 0; i < row.Lenght; i++)
 {
      string[] value = row[i].Split ('\t');
